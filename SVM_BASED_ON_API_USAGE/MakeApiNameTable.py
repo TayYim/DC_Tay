@@ -1,16 +1,17 @@
 import os
 import csv
 # DATA_PATH = "../TestData/"
-DATA_PATH = "../Data/"
+DATA_PATH = "../../Data/"
 BLACK_PATH = os.path.join(DATA_PATH, "black_count")
 WHITE_PATH = os.path.join(DATA_PATH, "white_count")
+TEST_PATH = os.path.join(DATA_PATH, "result_count")
 API_NAME_LIST = ['HttpOpenRequestA', 'InternetCrackUrlA', 'NtSetContextThread', 'AnalyzeStart', 'KeBugCheck2', 'NtWriteVirtualMemory', 'NtWriteFile', 'DeleteFileW', 'gethostbyname', 'Fake_SetFileCreationTime', 'FindFirstFileExW', 'NtCreateThreadEx', 'NtShutdownSystem', 'GetComputerNameExW', 'NtCreateMutant', 'connect', 'NtReadVirtualMemory', 'Thread32First', 'Process32FirstW', 'listen', 'CreateServiceW', 'CryptExportKey', 'WSARecv', 'KiTrap0D', 'NtDeleteKey', 'WSAConnect', 'AnalyzeStop', 'NtTerminateProcess', 'CreateProcessInternalW', 'URLDownloadToFileW', 'MoveFileWithProgressW', 'WMICreateInstanceEnum', 'Fake_BeInjected', 'InternetCrackUrlW', 'WSARecvFrom', 'GetComputerNameW', 'AutoLogin', 'GetForegroundWindow', 'GetAdaptersAddresses', 'StrangeBehavior', 'CryptGenKey', 'NtSuspendThread', 'OpenSCManagerW', 'WMIExecQuery', 'sendto', 'NtUnloadDriver', 'NtLoadDriver',
                  'Module32FirstW', 'Fake_TerminateRemoteProcess', 'NtReadFile', 'WSASocketW', 'recv', 'NtSetValueKey', 'NtTerminateThread', 'Fake_DetectDebugger', 'EnumServicesStatusExW', 'InternetReadFile', 'Login', 'NtSetSystemInformation', 'StartServiceW', 'GetProcessAffinityMask', 'UnpackSelf', 'EnumServicesStatusA', 'OpenServiceW', 'KiGeneralProtectionFault', 'NtQueryAttributesFile', 'LoadLibraryExW', 'NtDeleteValueKey', 'SetWindowsHookExW', 'CopyFileExW', 'NtSetSystemTime', 'NtCreateFile', 'NtCreateThread', 'EnumServicesStatusW', 'NtQueryDirectoryFile', 'PowerOn', 'VMDetect', 'WMIConnectServer', 'SendARP', 'WSASendTo', 'DeleteService', 'send', 'NtAdjustPrivilegesToken', 'Fake_SetFileHiddenOrReadOnly', 'NtQueryFullAttributesFile', 'Fake_BeCreatedEx', 'NtSuspendProcess', 'recvfrom', 'WSASend', 'TryToAnalyze', 'TooManyBehavior', 'Fake_WritePEFile', 'NtDeleteFile']
 
 
 def make_api_name_table(csv_file_name, path, label):
     # init csv file
-    # 1:black,0:white
+    # 1:black,0:white,-1:test
     csv_file = open(csv_file_name, "w")
     csv_head = API_NAME_LIST + ["label", "api_name"]
     csv.writer(csv_file).writerow(csv_head)
@@ -38,3 +39,4 @@ def add_row(csv_file, label, api_name, lines):
 if __name__ == "__main__":
     make_api_name_table("black_usage.csv", BLACK_PATH, 1)
     make_api_name_table("white_usage.csv", WHITE_PATH, 0)
+    make_api_name_table("test_usage.csv", TEST_PATH, -1)
